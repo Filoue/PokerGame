@@ -11,6 +11,8 @@ public:
     void SetHand(std::array<Card, 5>);
 
     void OrderHand();
+
+    void CheckHand();
     
     // Display the value of the card as string vaslue
     std::string Display();

@@ -4,13 +4,6 @@
 #include "Player.h"
 #include "Deck.h"
 #include "Card.h"
-#include "HandValue.h"
-
-void InitSeed()
-{
-	srand(time(nullptr));
-}
-
 
 int main()
 {
@@ -22,12 +15,11 @@ int main()
 
 	std::cout << "Deck complete ------------------------------------------" << "\n";
 
-	InitSeed();
 
 	player.SetHand({ deck.Draw(), deck.Draw(), deck.Draw(), deck.Draw(), deck.Draw() });
 	player.OrderHand();
 
-	HandValue(player);
+	player.CheckHand();
 
 	
 	std::cout << std::format("Player one Card: {} \n", player.Display());
