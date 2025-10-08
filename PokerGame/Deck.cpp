@@ -23,7 +23,6 @@ void Deck::Fill()
 		for (int value = 2; value <= 14; value++)
 		{
 			cards_.emplace_back(Card{ static_cast<Hand>(hand), static_cast<Value>(value) });
-			
 		}
 	}
 

@@ -23,13 +23,23 @@ enum class Value
 	kJack,
 	kQueen,
 	kKing,
-	kAce
+	kAce,
 };
 
 struct Card
 {
 	Hand _Hand;
 	Value _Value;
+
+	int GetValue()
+	{
+		return static_cast<int>(_Value);
+	}
+
+	int GetHand()
+	{
+		return static_cast<int>(_Hand);
+	}
 
 	std::string ToString();
 

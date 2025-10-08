@@ -12,7 +12,7 @@ public:
 
     void OrderHand();
 
-    void CheckHand();
+    int CheckHand();
     
     // Display the value of the card as string vaslue
     std::string Display();

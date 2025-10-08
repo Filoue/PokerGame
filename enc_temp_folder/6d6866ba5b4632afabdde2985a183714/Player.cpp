@@ -64,7 +64,7 @@ int Player::CheckHand()
 	// Check the three of kind
 	for (int n = 2; n < playerHand.size(); n++)
 	{
-		if (playerHand[n].GetValue() != playerHand[n - 1].GetValue())
+		if (playerHand[n].GetValue() != playerHand[n - 1].GetValue() && playerHand[n - 1].GetValue() != playerHand[n - 2].GetValue())
 		{
 			threeOfKind = false;
 		}
