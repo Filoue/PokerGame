@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Card.h" />
+    <ClInclude Include="CheckHand.h" />
     <ClInclude Include="Deck.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
