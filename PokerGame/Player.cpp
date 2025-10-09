@@ -16,14 +16,17 @@ void Player::OrderHand()
 int Player::CheckHand()
 {
 	std::array<Card, 5> playerHand = _hand_cards;
+	std::array<int, 5> temp;
 
+	int tempCardValue = 0;
+	int counter = 0;
 		
 	// check the hand of player for any hand you can have
 	bool straight = true;
 	bool flush = true;
-	bool pair = true;
+	bool pair = false;
 	bool doublePair = true;
-	bool threeOfKind = true;
+	bool threeOfKind = false;
 
 	// Check the straight
 	for (int n = 1; n < playerHand.size(); n++)
@@ -52,50 +55,71 @@ int Player::CheckHand()
 			numberOfPair++;
 		}
 	}
-	if (numberOfPair != 1)
-	{
-		pair = false;
-	}
-	else if (numberOfPair != 2)
+	if (numberOfPair != 2)
 	{
 		doublePair = false;
 	}
 
-	// Check the three of kind
-	for (int n = 2; n < playerHand.size(); n++)
+
+	for (int i = 0; i < 3; i++)
 	{
-		if (playerHand[n].GetValue() != playerHand[n - 1].GetValue())
+		for (int j = i + 1; j < 4; j++) 
 		{
-			threeOfKind = false;
+			for (int k = j + 1; k < 5; k++)
+			{
+				if (playerHand[i].GetValue() == playerHand[j].GetValue() && playerHand[i].GetValue() == playerHand[k].GetValue())
+				{
+					threeOfKind = true;
+					tempCardValue = playerHand[i].GetValue();
+					break;
+				}
+			}
 		}
 	}
-
+	for (int i = 0; i < 5; i++)
+	{
+		if (playerHand[i].GetValue() != tempCardValue)
+		{
+			temp[counter] = playerHand[i].GetValue();
+			counter++;
+		}
+	}
+	if (temp[0] == temp[1])
+	{
+		pair = true;
+	}
+	
 
 	// return for all the possible hand
 	if ((flush && straight) && playerHand[4]._Value == Value::kAce)
 	{
 		std::cout << "you got a Royal Flush";
+		return 10;
 	}
 	else if (flush && straight)
 	{
 		std::cout << "you got a straight Flush";
+		return 9;
 	}
-	else if (straight)
+	else if (threeOfKind && pair)
 	{
-		std::cout << "you got a straight";
-		return 8;
+		std::cout << "you got a Full House";
+		return 7;
 	}
 	else if (flush)
 	{
 		std::cout << "you got a Flush";
+		return 6;
 	}
-	else if (doublePair && threeOfKind)
+	else if (straight)
 	{
-		std::cout << "you got a Full House";
+		std::cout << "you got a straight";
+		return 5;
 	}
 	else if (threeOfKind)
 	{
 		std::cout << "you got a three of Kind";
+		return 4;
 	}
 	else if (doublePair)
 	{
